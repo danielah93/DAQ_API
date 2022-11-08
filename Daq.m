@@ -7,10 +7,7 @@ classdef Daq<handle
        resMat;
        debugStatus;
        isConnected;
-       maxValue = 4095;
-%        vMax;
-%        vMin;
-%        vSlope;
+       maxValue = 4096;
     end
     
     methods
