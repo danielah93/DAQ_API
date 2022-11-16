@@ -8,6 +8,8 @@ classdef Daq<handle
        debugStatus;
        isConnected;
        maxValue = 4096;
+       maxVolt = 0.04;
+       minVolt = -0.04;
     end
     
     methods
@@ -181,13 +183,13 @@ classdef Daq<handle
                    calllib('IALibrary', 'SetCoupling', 0);
                    this.vars.coupling = 50;
                    res = 0;
-               case 85
+               case 'HighZ'
                    calllib('IALibrary', 'SetCoupling', 1);
-                   this.vars.coupling = 85;
+                   this.vars.coupling = HighZ;
                    res = 0;
                otherwise
                    res = -1;
-                   error('Coupling value must be 50 or 85');
+                   error('Coupling value must be 50 or HighZ');
            end
         end
         
@@ -308,7 +310,7 @@ classdef Daq<handle
         end
          
         function v = ToVolts(this, a)
-            v = ( this.maxValue/4e-3 ) * a;
+            v = ( (this.maxVolt - this.minVolt) / this.maxValue ) * a + this.minVolt;
         end
         
     end
