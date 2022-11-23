@@ -7,7 +7,7 @@ classdef Daq<handle
        resMat;
        debugStatus;
        isConnected;
-       maxValue = 4096;
+       maxValue = 4095;
        maxVolt = 0.02;
        minVolt = -0.02;
     end
@@ -19,7 +19,7 @@ classdef Daq<handle
             this.vars.channels = 256;
             this.vars.delay = 0;
             this.vars.filterBandwidth = 'max';
-            this.vars.coupling = 50;
+            this.vars.coupling = '50';
             this.vars.samplingRate = 125e6;
             this.vars.numOfFrames = 1;
             this.vars.ADCGain = 0;
@@ -179,13 +179,13 @@ classdef Daq<handle
               error('Device is not connected');
            end
            switch c
-               case 50
+               case '50'
                    calllib('IALibrary', 'SetCoupling', 0);
-                   this.vars.coupling = 50;
+                   this.vars.coupling = '50';
                    res = 0;
                case 'HighZ'
                    calllib('IALibrary', 'SetCoupling', 1);
-                   this.vars.coupling = HighZ;
+                   this.vars.coupling = 'HighZ';
                    res = 0;
                otherwise
                    res = -1;
