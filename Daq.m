@@ -8,8 +8,8 @@ classdef Daq<handle
        debugStatus;
        isConnected;
        maxValue = 4096;
-       maxVolt = 0.04;
-       minVolt = -0.04;
+       maxVolt = 0.02;
+       minVolt = -0.02;
     end
     
     methods
